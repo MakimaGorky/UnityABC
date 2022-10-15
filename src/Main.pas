@@ -1,6 +1,6 @@
 ﻿uses Input, GraphABC, Timers;
 
-const FrameCountBeforeClear = 0;
+const FrameCountBeforeClear = 2;
 
 var framePassed := 0;
 var x, y : integer;
@@ -31,5 +31,6 @@ begin
   Window.Init(0, 0, 500, 500, Color.Firebrick);
   
   FillCircle(600, 600, 10); 
+  
   Timers.CreateTimerAndStart(1, Update);
 end.
