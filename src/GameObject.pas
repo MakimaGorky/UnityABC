@@ -1,6 +1,6 @@
 ﻿unit GameObject;
 
-uses GraphWPF;
+uses GraphWPF, BasicTypes;
 
 type GO = class
   private

@@ -16,6 +16,16 @@ type RectCollider = class
     property yMax : real Read y + height;
 end;
 
-
+type CircleCollider = class
+  public
+    x, y, radius: real;
+    
+    constructor Create(xx, yy, rradius: real);
+    begin
+      x := xx;
+      y := yy;
+      radius := rradius;
+    end;
+end;
 
 end.

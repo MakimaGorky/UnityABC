@@ -1,9 +1,4 @@
-﻿uses Input, GraphWPF, Timers, GameObject, Colliders;
-
-const GlobalTickValue = 1;
-const FrameCountBeforeClear = 2;
-
-var speed := 5;
+﻿uses Input, GraphWPF, Timers, GameObject, Colliders, BasicTypes, GlobalGameConfig;
 
 var framePassed := 0;
 
@@ -16,9 +11,9 @@ begin
   var hAxis := GetAxisHorizontal();
   var vAxis := GetAxisVertical();
   
-  Player.Move(speed * hAxis, speed * vAxis);
+  Player.Move(PlayerSpeed * hAxis, PlayerSpeed * vAxis);
   
-  if framePassed > FrameCountBeforeClear then
+  if framePassed > FramesBeforeClear then
   begin
     framePassed := 0;
     Window.Clear();
@@ -31,7 +26,7 @@ begin
 end;
 
 begin
-  Player := GO.Create(50, 50);
+  Player := GO.Create(3, 5);
   var Obstacle := GO.Create(100, 100);
   
   Gos := new GO[2];
@@ -42,5 +37,5 @@ begin
   
   FillCircle(600, 600, 10); 
   
-  Timers.CreateTimerAndStart(GlobalTickValue, Update);
+  Timers.CreateTimerAndStart(MSPerFrame, Update);
 end.

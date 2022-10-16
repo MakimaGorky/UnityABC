@@ -3,6 +3,7 @@
 
 interface
 
+
 uses GraphWPF;
 
 /// Возвращает значение -1, если игрок хочет двигаться влево или 1, если вправо. 0 - движения нет
@@ -13,6 +14,7 @@ function GetAxisVertical() : integer;
 
 
 implementation
+
 
 var holdingUp, holdingDown, holdingLeft, holdingRight : boolean;
 var up, down, left, right : boolean;
