@@ -1,4 +1,4 @@
-﻿uses Input, GraphWPF, Timers, GameObject;
+﻿uses Input, GraphWPF, Timers, GameObject, Colliders;
 
 const GlobalTickValue = 1;
 const FrameCountBeforeClear = 2;
