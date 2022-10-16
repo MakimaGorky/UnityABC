@@ -3,7 +3,7 @@
 
 interface
 
-uses GraphABC;
+uses GraphWPF;
 
 /// Возвращает значение -1, если игрок хочет двигаться влево или 1, если вправо. 0 - движения нет
 function GetAxisHorizontal() : integer; 
@@ -17,36 +17,36 @@ implementation
 var holdingUp, holdingDown, holdingLeft, holdingRight : boolean;
 var up, down, left, right : boolean;
 
-procedure KeyDown(Key : integer);
+procedure KeyDown(Key : Key);
 begin
-  if (Key = VK_W) or (Key = VK_Up) then
+  if (Key = System.Windows.Input.Key.W) or (Key = System.Windows.Input.Key.Up) then
   begin
     up := true;
     holdingUp := true
   end
   
-  else if (Key = VK_S) or (Key = VK_Down) then
+  else if (Key = System.Windows.Input.Key.S) or (Key = System.Windows.Input.Key.Down) then
   begin
     down := true;
     holdingDown := true;
   end
   
-  else if (Key = VK_A) or (Key = VK_Left) then
+  else if (Key = System.Windows.Input.Key.A) or (Key = System.Windows.Input.Key.Left) then
   begin
     left := true;
     holdingLeft := true;  
   end
   
-  else if (Key = VK_D) or (Key = VK_Right) then
+  else if (Key = System.Windows.Input.Key.D) or (Key = System.Windows.Input.Key.Right) then
   begin
     right := true;
     holdingRight := true;
   end
 end;
 
-procedure KeyUp(Key : integer);
-begin
-  if (Key = VK_W) or (Key = VK_Up) then
+procedure KeyUp(Key : Key);
+begin 
+  if (Key = System.Windows.Input.Key.W) or (Key = System.Windows.Input.Key.Up) then
   begin
     if holdingDown then
       down := true;
@@ -54,7 +54,7 @@ begin
     up := false;
   end;
   
-  if (Key = VK_S) or (Key = VK_Down) then
+  if (Key = System.Windows.Input.Key.S) or (Key = System.Windows.Input.Key.Down) then
   begin
     if holdingUp then
       up := true;
@@ -62,21 +62,21 @@ begin
     down := false;
   end;
   
-  if (Key = VK_A) or (Key = VK_Left) then
+  if (Key = System.Windows.Input.Key.A) or (Key = System.Windows.Input.Key.Left) then
   begin
     if holdingRight then
       right := true;
     holdingLeft := false;
     left := false;
-  end;
+  end;  
   
-  if (Key = VK_D) or (Key = VK_Right) then
+  if (Key = System.Windows.Input.Key.D) or (Key = System.Windows.Input.Key.Right) then
   begin
     if holdingLeft then
       left := true;
     holdingRight := false;
     right := false;
-  end;
+  end;    
 end;
 
 function GetAxisHorizontal() := holdingLeft ? -1 : holdingRight ? 1 : 0;

@@ -1,36 +1,46 @@
-﻿uses Input, GraphABC, Timers;
+﻿uses Input, GraphWPF, Timers, GameObject;
 
+const GlobalTickValue = 1;
 const FrameCountBeforeClear = 2;
 
+var speed := 5;
+
 var framePassed := 0;
-var x, y : integer;
+
+var Player: GO;
+
+var Gos: array of GO;
 
 procedure Update();
 begin
   var hAxis := GetAxisHorizontal();
   var vAxis := GetAxisVertical();
   
-  x += 3 * hAxis;
-  y += 3 * vAxis;
+  Player.Move(speed * hAxis, speed * vAxis);
   
   if framePassed > FrameCountBeforeClear then
   begin
     framePassed := 0;
-    ClearWindow();
+    Window.Clear();
   end;
   
-  FillCircle(x, y, 10); 
+  Gos[1].RenderSquare();  
+  Gos[0].RenderCircle();
   
   framePassed += 1;
 end;
 
 begin
-  (x, y) := (50, 50);
+  Player := GO.Create(50, 50);
+  var Obstacle := GO.Create(100, 100);
+  
+  Gos := new GO[2];
+  Gos[0] := Player;
+  Gos[1] := Obstacle;
   
   Window.Title := 'Паскаль юнити';
-  Window.Init(0, 0, 500, 500, Color.Firebrick);
   
   FillCircle(600, 600, 10); 
   
-  Timers.CreateTimerAndStart(1, Update);
+  Timers.CreateTimerAndStart(GlobalTickValue, Update);
 end.
